@@ -1,0 +1,71 @@
+{% extends "sfuanime/layout.html" %}
+
+{% block content %}
+{% load static %}
+<!--
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+      <li><a href="{% url 'sfuanime:detail' question.id %}">sadasdasd{{ question.question_text }}</a></li>
+          {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+-->
+
+
+<div class = "news-container" style="height:1000px;">
+<div class = "row" >
+  <div class = "col-sm-8" >
+  <h1 style="font-size:46px;padding-left:400px;padding-top:40px;"><b> NEWS</b> </h1>
+</div>
+<div class = "col-sm-8" style="padding-left:420px;padding-top:60px;">
+  {% for p in users %}
+                <div class="news-body"><b><p style="font-size:14px;padding-top:30px;">{{p.datetime}}</p></div></b>
+                <a href="{% url 'sfuanime:news_index' p.id %}"><h1 class="post-title">{{p.title}}</h1></a>
+
+
+         {% endfor %}
+
+
+  </div>
+
+
+</div>
+
+<div class="row" >
+    <div class = "col-sm-8" style="padding-left:400px;">
+  {% if users.has_other_pages %}
+  <ul class="pagination">
+    {% if users.has_previous %}
+      <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in users.paginator.page_range %}
+      {% if users.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if users.has_next %}
+      <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+</div>
+</div>
+
+
+</body>
+
+{% endblock %}
+
+
+
+</html>

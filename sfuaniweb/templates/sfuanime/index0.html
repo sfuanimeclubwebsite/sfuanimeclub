@@ -1,0 +1,572 @@
+{% extends "sfuanime/layout.html" %}
+
+{% block content %}
+{% load static %}
+
+
+<!-- admin password: sfuanimeclub2020 -->
+<div class="wrapper">
+
+
+<div class="index-image-container" style="width:90%;padding-left:150px;padding-top:50px;" >
+  <div class="row">
+  <div class="col-8">
+
+
+<!-- python manage.py findstatic -->
+
+<div class="container">
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    {% for cid in cover %}
+
+
+                    {% if cid.id == 0 %}
+                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+
+                    {% else %}
+                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+
+                    {% endif %}
+
+           {% endfor %}
+     </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" style="height:560px;overflow:hidden;">
+              {% for cid in cover %}
+                {% if cid.id == 1 %}
+              <div class="item active">
+                {% else %}
+                <div class="item">
+                {% endif %}
+              <a href="{% url 'sfuanime:news_index' cid.link %}">
+              <img src="{{ MEDIA_URL }} /media/{{cid.cover_image}}" alt="" style="width:200%;object-fit:cover;">
+              </a>
+              <div class="carousel-caption">
+                <h3 >{{cid.body|safe}}</h3>
+
+              </div>
+              </div>
+              {% endfor %}
+
+  </div>
+
+<!--
+
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+-->
+</div>
+</div>
+
+  </div>
+
+<!--  <div class="col" >
+      <h3>FEATURED POSTS</h3>
+      <div class="row">
+        <div class="col" style="height:300px; padding:10px;">
+
+          {% for p in indexid %}
+
+          <div class="row">
+            <div class="col-2">
+            <img src="{{ MEDIA_URL }} /media/{{p.cover_image}}" alt="" width="80%" height="80%">
+            </div>
+
+                    <div class="col" >
+                       <a href="{% url 'sfuanime:news_index' p.id %}"><h1 class="post-title">{{p.title}}</h1></a>
+
+                      <h5 class="p-date">{{p.datetime}} - {{p.author}}</h5>
+
+                      </div>
+
+              <hr />
+              </div>
+                 {% endfor %}
+
+          </div>
+          </div>
+
+          <div class="row" >
+          <div class="row">
+
+          </div>
+
+          <div class="row">
+
+          <div  class="col" >
+            </div>
+          </div>
+
+            </div>
+
+
+  </div>
+  -->
+
+<div class = "col">
+<div class = "row">
+
+  <div class="col">
+  <div class="" style="background-color:#D56363;height:200px;width:240px;">
+
+
+      <h1 id="date"></h1>
+
+      <script>
+          n =  new Date();
+          y = n.getFullYear();
+          m = n.getMonth();
+          d = n.getDate();
+
+          var mns = new Array(12);
+          mns[0] = "January";
+          mns[1] = "February";
+          mns[2] = "March";
+          mns[3] = "April";
+          mns[4] = "May";
+          mns[5] = "June";
+          mns[6] = "July";
+          mns[7] = "August";
+          mns[8] = "September";
+          mns[9] = "October";
+          mns[10] = "November";
+          mns[11] = "December";
+
+          var mnss = mns[m];
+
+          var dd = new Date();
+          var nd = dd.getDay();
+
+          document.getElementById("date").innerHTML =
+           "<h1 style='font-size:80px;color:white;position:relative;left:170px;top:50px;'>"+d+"</h1>"
+          +   "<h1 style='font-size:26px;color:white;position:relative;left:20px;bottom:30px;'>"+mnss+"</h1>";
+
+          </script>
+      <p id="dayofweek"></p>
+
+      <script>
+
+        var d = new Date();
+        var weekday = new Array(7);
+        weekday[0] = "Sunday";
+        weekday[1] = "Monday";
+        weekday[2] = "Tuesday";
+        weekday[3] = "Wednesday";
+        weekday[4] = "Thursday";
+        weekday[5] = "Friday";
+        weekday[6] = "Saturday";
+
+        var n = weekday[d.getDay()];
+        document.getElementById("dayofweek").innerHTML =
+         "<h1 style='font-size:24px;color:white;position:relative;left:20px;bottom:30px;'>"+n+"</h1>";
+
+         </script>
+  </div>
+
+
+    <div class="" style="background-color:#C297C4;height:120px;width:240px;position:relative;top:20px;overflow:hidden;">
+
+    <a class="weatherwidget-io" href="https://forecast7.com/en/49d28n123d12/vancouver/" data-label_1="VANCOUVER" data-theme="original" >VANCOUVER</a>
+
+             <script>
+             !function(d,s,id)
+             {var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
+               js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+             </script>
+
+      </div>
+
+  </div>
+
+  <div class="row">
+  <div class="col">
+    <div class="" style="background-color:#C297C4;
+    height:340px;width:260px;">
+  </div>
+
+    </div>
+  </div>
+
+
+  <!------------------>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+  <div class="row" style="padding-top:20px;">
+
+
+    <div class="col-2" style="padding-left:30px;">
+    <div class = "row">
+
+
+    </div>
+    </div>
+
+    <div class="col-6" style=padding-right:40px;">
+
+      <div class="row">
+
+
+        <div class="col-4" style=padding-right:40px;">
+
+      <div style="width:240px;height:160px;position:relative;left:40px;overflow:hidden;" >
+
+        <div class="container" style="
+        background-color:#8fd9d9;overflow:hidden;
+        display: flex;justify-content: center;" >
+
+
+        <div class="img-container" data-slideshow>
+
+      {% for g in gall %}
+
+        <img src="{{ MEDIA_URL }} /media/img/index-gallery/{{g.title}}" alt="">
+
+      {% endfor %}
+
+    </div>
+  <a href="{% url 'sfuanime:galleria' %}">
+    <div class="overlay-1">
+
+      <div class="text">Check our gallery!</div>
+    </div>
+  </a>
+          </div>
+
+
+
+        </div>
+        </div>
+          </div>
+
+
+          <div class="row" id="screening">
+
+            <div class="col-8" style=padding-right:40px;padding-top:20px;">
+
+
+          <div style="width:480px;height:160px;position:relative;
+          bottom:50px;left:40px;background-color:#8BD665;overflow:hidden;" >
+
+          <div class="row">
+            <div class="col-6" style="
+            height:160px;width:150px;position:relative;left:16px;">
+
+            <div style="position:relative;top:30px;">
+            <h3 style="position:relative;color:white;">SCREENING UPDATE</h3>
+            <h6 style="color:white;"> {{scrid.body|safe}}</h6>
+            </div>
+              </div>
+
+              <div class="col-6" style="width:100px;overflow:hidden;">
+
+
+                <img src="{{ MEDIA_URL }} /media/{{scrid.hotel_Main_Img}}"
+                alt=""
+                style='height: 100%; width: 100%; object-fit: contain;
+                display: flex;
+                flex-wrap: wrap-reverse;
+                justify-content: center;'>
+
+
+                </div>
+            </div>
+
+
+
+          </div>
+
+            </div>
+
+
+            <div class="col-4" style=padding-right:40px;padding-top:10px;">
+
+            <div class="container" style="width:220px;height:120px;position:relative;left:20px;
+            background-color:#8fd9d9;overflow:hidden;
+            display: flex;justify-content: center;" >
+
+
+            <div class="img-container" data-slideshow-2>
+
+
+              <img src="{{ MEDIA_URL }} /media/img/mascot/1.jpg" alt="">
+              <img src="{{ MEDIA_URL }} /media/img/mascot/2.png" alt="">
+
+              <img src="{{ MEDIA_URL }} /media/img/mascot/3.jpg" alt="">
+
+              <img src="{{ MEDIA_URL }} /media/img/mascot/4.png" alt="">
+
+
+
+              </div>
+
+    <a href="{% url 'sfuanime:galleria' %}">
+  <div class="overlay">
+
+    <div class="text">Meet the Mascot!</div>
+
+  </div>
+  </a>
+              </div>
+              </div>
+
+
+
+            </div>
+<!--
+
+-->
+
+</div>
+
+
+<!--
+    <div class="col">
+
+
+      <div class="row">
+          <div class="col" style="height:200px;
+          position:relative; left:10px;
+          overflow:hidden;display: flex;justify-content: center;">
+
+            <div class="class-img" style="position:static;">
+            <img src="{{ MEDIA_URL }} /media/{{cd.cover_image}}" alt=""
+            style="height:200px;">
+            </div>
+
+
+            </div>
+            <div class="col" style="background-color:#f2c57c;position:relative;right:10px;">
+
+                <div style="position:relative;top:40px;">
+              <h2 style="color:white">Next Event</h2>
+              <h2 style="color:white;">{{ cd.title }}</h2>
+              <h1 style="color:white;" id="demo2"></h1>
+              </div>
+
+            <script>
+
+              // Set the date we're counting down to
+              var countDownDate = new Date("{{cd.datetime}}").getTime();
+
+
+              // Update the count down every 1 second
+              var x = setInterval(function() {
+
+              // Get today's date and time
+              var now = new Date().getTime();
+
+              // Find the distance between now and the count down date
+              var distance = countDownDate - now;
+
+              // Time calculations for days, hours, minutes and seconds
+              var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+              var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+              // Display the result in the element with id="demo"
+              document.getElementById("demo2").innerHTML = days + "d " + hours + "h "
+              + minutes + "m " + seconds + "s ";
+
+              // If the count down is finished, write some text
+              if (distance < 0) {
+              clearInterval(x);
+              document.getElementById("demo2").innerHTML = "EXPIRED";
+              }
+              }, 1000);
+              </script>
+
+              </div>
+      </div>
+
+      <div class="row" style="padding-top:10px;">
+          <div class="col" style="height:100px;padding-top:10px;">
+            <h3>PARTNERSHIP</h3>
+
+                          <img src="{{ MEDIA_URL }} /media/img/sponsor/sakuramedia.jpg" alt="" style="width:16%;">
+                          <img src="{{ MEDIA_URL }} /media/img/sponsor/gawon.jpg" alt="" style="width:16%;">
+
+                          <img src="{{ MEDIA_URL }} /media/img/sponsor/bubbleworld.jpg" alt="" style="width:16%;">
+                          <img src="{{ MEDIA_URL }} /media/img/sponsor/sakuramedia.jpg" alt="" style="width:16%;">
+                          <img src="{{ MEDIA_URL }} /media/img/sponsor/gawon.jpg" alt="" style="width:16%;">
+
+                          <img src="{{ MEDIA_URL }} /media/img/sponsor/bubbleworld.jpg" alt="" style="width:16%;">
+
+
+            </div>
+
+
+
+      </div>
+
+    </div>
+-->
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+
+          <script>
+class Slideshow {
+
+  constructor() {
+    this.initSlides();
+    this.initSlideshow();
+  }
+
+  // Set a `data-slide` index on each slide for easier slide control.
+  initSlides() {
+    this.container = $('[data-slideshow]');
+    this.slides = this.container.find('img');
+    this.slides.each((idx, slide) => $(slide).attr('data-slide', idx));
+  }
+
+  // Pseudo-preload images so the slideshow doesn't start before all the images
+  // are available.
+  initSlideshow() {
+    this.imagesLoaded = 0;
+    this.currentIndex = 0;
+    this.setNextSlide();
+    this.slides.each((idx, slide) => {
+      $('<img>').on('load', $.proxy(this.loadImage, this)).attr('src', $(slide).attr('src'));
+    });
+  }
+
+  // When one image has loaded, check to see if all images have loaded, and if
+  // so, start the slideshow.
+  loadImage() {
+    this.imagesLoaded++;
+    if (this.imagesLoaded >= this.slides.length) { this.playSlideshow() }
+  }
+
+  // Start the slideshow.
+  playSlideshow() {
+    this.slideshow = window.setInterval(() => { this.performSlide() }, 3500);
+  }
+
+  performSlide() {
+    if (this.prevSlide) { this.prevSlide.removeClass('prev fade-out') }
+
+    this.nextSlide.removeClass('next');
+    this.prevSlide = this.nextSlide;
+    this.prevSlide.addClass('prev');
+
+    this.currentIndex++;
+    if (this.currentIndex >= this.slides.length) { this.currentIndex = 0 }
+
+    this.setNextSlide();
+
+    this.prevSlide.addClass('fade-out');
+  }
+
+  setNextSlide() {
+    this.nextSlide = this.container.find(`[data-slide="${this.currentIndex}"]`).first();
+    this.nextSlide.addClass('next');
+  }
+
+}
+
+$(document).ready(function() {
+  new Slideshow;
+});
+
+</script>
+
+
+
+
+
+<script>
+class Slideshow2 {
+
+  constructor() {
+    this.initSlides();
+    this.initSlideshow();
+  }
+
+  // Set a `data-slide` index on each slide for easier slide control.
+  initSlides() {
+    this.container = $('[data-slideshow-2]');
+    this.slides = this.container.find('img');
+    this.slides.each((idx, slide) => $(slide).attr('data-slide', idx));
+  }
+
+  // Pseudo-preload images so the slideshow doesn't start before all the images
+  // are available.
+  initSlideshow() {
+    this.imagesLoaded = 0;
+    this.currentIndex = 0;
+    this.setNextSlide();
+    this.slides.each((idx, slide) => {
+      $('<img>').on('load', $.proxy(this.loadImage, this)).attr('src', $(slide).attr('src'));
+    });
+  }
+
+  // When one image has loaded, check to see if all images have loaded, and if
+  // so, start the slideshow.
+  loadImage() {
+    this.imagesLoaded++;
+    if (this.imagesLoaded >= this.slides.length) { this.playSlideshow() }
+  }
+
+  // Start the slideshow.
+  playSlideshow() {
+    this.slideshow = window.setInterval(() => { this.performSlide() }, 3500);
+  }
+
+  performSlide() {
+    if (this.prevSlide) { this.prevSlide.removeClass('prev fade-out') }
+
+    this.nextSlide.removeClass('next');
+    this.prevSlide = this.nextSlide;
+    this.prevSlide.addClass('prev');
+
+    this.currentIndex++;
+    if (this.currentIndex >= this.slides.length) { this.currentIndex = 0 }
+
+    this.setNextSlide();
+
+    this.prevSlide.addClass('fade-out');
+  }
+
+  setNextSlide() {
+    this.nextSlide = this.container.find(`[data-slide="${this.currentIndex}"]`).first();
+    this.nextSlide.addClass('next');
+  }
+
+}
+
+$(document).ready(function() {
+  new Slideshow2;
+});
+
+</script>
+
+
+
+{% endblock %}
+
+
+
+</html>

@@ -1,0 +1,68 @@
+{% extends "sfuanime/layout.html" %}
+
+{% block content %}
+{% load static %}
+<!--
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+      <li><a href="{% url 'sfuanime:detail' question.id %}">sadasdasd{{ question.question_text }}</a></li>
+          {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+-->
+
+
+
+
+
+<div class = "news-container"style="height:1000px;">
+<div class = "row" >
+  <div class = "col-sm-8" >
+  <h1 style="font-size:46px;font-style:bold;padding-left:400px;padding-top:40px;"> EVENTS </h1>
+</div>
+<div class = "col-sm-8" style="padding-left:420px;padding-top:100px;">
+
+  {% if eventpost %}
+
+  {% else %}
+
+<div class = "coming-soon" style="padding-left:400px;">
+  <div class = "row" >
+  <div class = "col-sm" >
+  <img src="{% static 'img/ren_chibi.jpg' %}"  style="width:100px">
+  </div>
+  <div class = "col-sm" >
+  <h1> Coming Soon! </h1>
+  </div>
+  <div class = "col-sm" >
+  <img src="{% static 'img/ayumi_chibi.jpg' %}"  style="width:100px">
+  </div>
+  </div>
+</div>
+
+  {% endif %}
+  {% for e in eventpost %}
+
+
+               <div class="news-body">{{e.body|safe}}</div>
+
+         {% endfor %}
+
+
+  </div>
+
+
+</div>
+</div>
+
+
+</body>
+
+{% endblock %}
+
+
+
+</html>

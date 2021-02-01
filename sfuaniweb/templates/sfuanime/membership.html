@@ -1,0 +1,81 @@
+{% extends "sfuanime/layout.html" %}
+
+{% block content %}
+{% load static %}
+<!--
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+      <li><a href="{% url 'sfuanime:detail' question.id %}">sadasdasd{{ question.question_text }}</a></li>
+          {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+-->
+
+
+<!--
+<div class = "row" >
+  <div class = "col-sm-3" >
+  <h1 style="font-size:60px;font-style:bold;padding-left:350px;"> Events </h1>
+  </div>
+  <div class = "col-sm" >
+  <p style="font-size:20px;font-style:bold;padding-left:150px;"> The SFU Anime Club holds a variety of events! </p>
+    <p style="font-size:20px;font-style:bold;padding-left:150px;">Our events include, but are not limited to, the following:</p>
+</div>
+  </div>
+-->
+
+
+<div class = "news-container"style="height:1000px;">
+<div class = "row" >
+  <div class = "col-sm-8" >
+  <h1 style="font-size:60px;font-style:bold;padding-left:400px;padding-top:40px;"> MEMBERSHIP </h1>
+</div>
+<div class = "col-sm-8" style="padding-left:420px;padding-top:100px;">
+
+
+
+    {% if mempost %}
+
+    {% else %}
+
+  <div class = "coming-soon" style="padding-left:400px;">
+    <div class = "row" >
+    <div class = "col-sm" >
+    <img src="{% static 'img/ren_chibi.jpg' %}"  style="width:100px">
+    </div>
+    <div class = "col-sm" >
+    <h1> Coming Soon! </h1>
+    </div>
+    <div class = "col-sm" >
+    <img src="{% static 'img/ayumi_chibi.jpg' %}"  style="width:100px">
+    </div>
+    </div>
+  </div>
+
+    {% endif %}
+    {% for m in mempost %}
+
+
+                 <div class="news-body">{{m.body|safe}}</div>
+
+           {% endfor %}
+
+
+
+
+  </div>
+
+
+</div>
+</div>
+
+</body>
+
+{% endblock %}
+
+
+
+</html>

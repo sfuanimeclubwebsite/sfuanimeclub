@@ -1,0 +1,41 @@
+{% extends "sfuanime/layout.html" %}
+
+{% block content %}
+{% load static %}
+<!--
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+      <li><a href="{% url 'sfuanime:detail' question.id %}">sadasdasd{{ question.question_text }}</a></li>
+          {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+-->
+<div class = "news-container" ">
+<div class = "row" >
+<div class = "col-sm-8" style="padding-left:520px;padding-top:60px;">
+     {% for p in postid %}
+               <h4 class="post-title" style="font-size:26px;color:black;padding-top:30px;padding-right:40px;display:inline-block;">{{p.datetime}}</h4>
+               <iframe src="{{ request.get_full_path }}"
+               width="96" height="20" style="border:none;overflow:hidden" scrolling="no"
+               frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                <a class="twitter-share-button"
+                 href="{{ request.get_full_path }}"
+                 data-size="large">
+                 Tweet</a>
+               <h1 class="post-title" style="font-size:36px;color:black;padding-top:30px;padding-right:40px;">{{p.title}}</h1>
+              <h4 class="author" style="font-size:26px;color:black;padding-top:30px;padding-right:40px;">{{p.author}}</h4>
+               <div class="news-body"  style="padding-top:80px;padding-right:40px;padding-bottom:40px;">{{p.body|safe}}</div>
+               <a href="{% url 'sfuanime:news_tag' p.tag %}" style="padding-top:30px"><h3 class="post-title">Tag: {{p.tag}}</h3></a>
+      {% endfor %}
+  </div>
+</div>
+</div>
+</body>
+{% endblock %}
+
+
+
+</html>
